@@ -1,9 +1,11 @@
+import { Box } from '@material-ui/core';
+
 import './styles.css';
 
 import { PostCard } from "../PostCard";
 
 export const Posts = ({posts}) => (
-    <div className="posts">
+    <Box className="posts">
         {posts.map(post => (
             <PostCard
                 key={post.id}
@@ -13,5 +15,5 @@ export const Posts = ({posts}) => (
                 cover={post.cover}
             />
         ))}
-    </div>
+    </Box>
 )
