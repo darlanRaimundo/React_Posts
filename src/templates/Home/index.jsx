@@ -74,7 +74,7 @@ export const Home = () => {
 
       {
         filteredPosts.length === 0 && (
-          <p>Não existem posts =(</p>
+          <Typography variant="body2" component="p"> Não existem posts =( </Typography>
         )
       }
 
