@@ -7,6 +7,8 @@ import { Posts } from '../../components/Posts';
 import { loadPosts } from '../../utils/load-posts';
 import { GeneralBtn } from '../../components/GeneralBtn';
 import { TextInput } from '../../components/TextInput';
+import { db } from '../../services/firebase';
+import { ref, set } from "firebase/database";
 
 export const Home = () => {
 
@@ -28,6 +30,16 @@ export const Home = () => {
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
     const postsAndPhotos = await loadPosts();
+
+    postsAndPhotos.map((post, index) => {
+      set(ref(db, 'postsAndPhotos/'+post.id), {
+        body: post.body,
+        cover: post.cover,
+        id: post.id,
+        title: post.title,
+        userId: post.userId
+      })
+    });
 
     setPosts(postsAndPhotos.slice(page, postsPerPage));
     setAllPosts(postsAndPhotos);
